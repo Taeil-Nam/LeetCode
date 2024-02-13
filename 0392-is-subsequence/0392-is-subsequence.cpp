@@ -6,7 +6,7 @@ public:
         int sIndex = 0;
         int tIndex = 0;
 
-        while (sIndex < s.length() && tIndex < t.length())
+        while (sIndex < s.length() && tIndex < t.length()) // O(n)
         {
             if (s[sIndex] != t[tIndex])
             {
