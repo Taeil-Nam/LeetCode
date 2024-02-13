@@ -8,7 +8,7 @@ public:
         int right = 0;
         vector<vector<int> > result;
 
-        sort(nums.begin(), nums.end()); // O(logn)
+        sort(nums.begin(), nums.end()); // O(nlogn)
         for (int i = 0; i < nums.size() - 2; i++) // O(n)
         {
             fixedNumber = nums[i];
@@ -32,7 +32,7 @@ public:
                 }
             }
         }
-        sort(result.begin(), result.end()); // O(logn)
+        sort(result.begin(), result.end()); // O(nlogn)
         result.erase(unique(result.begin(), result.end()), result.end()); // O(n)
         return result;
     }
