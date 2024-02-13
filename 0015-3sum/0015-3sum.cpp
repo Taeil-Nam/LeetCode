@@ -7,6 +7,7 @@ public:
         int left = 0;
         int right = 0;
         vector<vector<int> > result;
+        set<vector<int> > set;  // for remove duplicate triplets
 
         sort(nums.begin(), nums.end()); // O(nlogn)
         for (int i = 0; i < nums.size() - 2; i++) // O(n)
@@ -27,16 +28,18 @@ public:
                 }
                 else
                 {
-                    result.push_back(vector<int>{fixedNumber, nums[left], nums[right]});
+                    set.insert(vector<int>{fixedNumber, nums[left], nums[right]}); // O(logn)
                     left++;
                 }
             }
         }
-        sort(result.begin(), result.end()); // O(nlogn)
-        result.erase(unique(result.begin(), result.end()), result.end()); // O(n)
+        for (auto triplets : set) // O(n)
+        {
+            result.push_back(triplets);
+        }
         return result;
     }
 };
 
-// Time complexity = O(n^2)
+// Time complexity = O(n^2 * logn)
 // Space complexity = O(n)
