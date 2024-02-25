@@ -6,7 +6,7 @@ public:
     bool isValid(string s)
     {
         stack<char> st;
-        for (char c : s) // O(n)
+        for (char c : s)
         {
             if (c == '(' || c == '{' || c == '[')
             {
@@ -15,20 +15,19 @@ public:
             else
             {
                 if (st.empty() ||
-                (c == ')' && st.top() != '(') ||
-                (c == '}' && st.top() != '{') ||
-                (c == ']' && st.top() != '['))
+                st.top() == '(' && c != ')' ||
+                st.top() == '{' && c != '}' ||
+                st.top() == '[' && c != ']')
                 {
                     return false;
                 }
-                st.pop();
+                else
+                {
+                    st.pop();
+                }
             }
         }
-        if (st.empty())
-        {
-            return true;
-        }
-        return false;
+        return st.empty();
     }
 };
 
