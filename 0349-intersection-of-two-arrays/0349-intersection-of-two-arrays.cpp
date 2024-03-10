@@ -32,4 +32,8 @@ Approch
 - nums1을 순회하면서 seen에 기록한다. seen[num]++;
 - nums2를 순회하면서 seen에 해당 숫자가 있고 use에 기록되지 않았다면, result와 use에 숫자를 추가한다.
 - result를 반환한다.
+
+[Complexity]
+- Time complexity = O(n)
+- Space complexity = O(n)
 */
