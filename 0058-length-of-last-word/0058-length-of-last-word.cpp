@@ -3,19 +3,10 @@ class Solution
 public:
     int lengthOfLastWord(string s)
     {
-        int count = 0;
-        for (int i = s.length() - 1; i >= 0; i--)
-        {
-            if (s[i] == ' ' && count == 0)
-            {
-                continue;
-            }
-            else if (s[i] == ' ' && count != 0)
-            {
-                break;
-            }
-            count++;
-        }
-        return count;
+        stringstream ss(s);
+        string res;
+        while (ss >> res)
+            ;
+        return res.size();
     }
 };
