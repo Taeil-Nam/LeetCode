@@ -1,23 +1,13 @@
-class Solution
-{
+class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target)
-    {
-        unordered_map<int, int> seen;
-        vector<int> result;
-        for (int i = 0; i < nums.size(); i++) // O(n)
-        {
-            if (seen.find(target - nums[i]) != seen.end())
-            {
-                result.push_back(seen[target - nums[i]]);
-                result.push_back(i);
-                break;
-            }
-            seen[nums[i]] = i;
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> prevMap;
+        for (int i = 0; i < nums.size(); i++){
+            int diff = target - nums[i];
+            if (prevMap.find(diff) != prevMap.end())    
+                return {prevMap[diff], i};
+            prevMap.insert({nums[i], i});
         }
-        return result;
+        return {};
     }
 };
-
-// Time complexity = O(n)
-// Space complexity = O(n)
