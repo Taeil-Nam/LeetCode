@@ -1,23 +1,11 @@
-class Solution
-{
+class Solution {
 public:
-    bool containsDuplicate(vector<int>& nums)
-    {
-        unordered_map<int, int> hashMap;
-        for (auto num : nums) // O(n)
-        {
-            hashMap[num]++;
-        }
-        for (auto value : hashMap) // O(n)
-        {
-            if (value.second >= 2)
-            {
-                return true;
-            }
+    bool containsDuplicate(vector<int>& nums) {
+        unordered_map<int, int> um;
+        for (int n : nums){
+            if (um[n] > 0) return true;
+            um[n]++;
         }
         return false;
     }
 };
-
-// Time complexity = O(n)
-// Space complexity = O(n)
