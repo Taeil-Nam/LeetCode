@@ -2,9 +2,9 @@ class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
         int N = nums.size();
-        vector<int> res(N);
         vector<int> prefix(N);
         vector<int> suffix(N);
+        vector<int> res(N);
         prefix[0] = 1;
         suffix[N - 1] = 1;
         for (int i = 1; i < N; i++){
@@ -20,7 +20,8 @@ public:
     }
 };
 /*
-1  1  2 8 prefix
-1  2  4 6 nums
-48 24 6 1 suffix
+1  1  2  8 prefix
+1  2  4  6 nums
+48 24 6  1 suffix
+48 24 12 8 res
 */
