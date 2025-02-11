@@ -6,7 +6,7 @@ public:
         return res;
     }
     void go(string s, int openCnt, int closeCnt, int n, vector<string>& res){
-        if (openCnt + closeCnt == 2 * n){
+        if (openCnt + closeCnt == n * 2){
             res.push_back(s);
             return;
         }
