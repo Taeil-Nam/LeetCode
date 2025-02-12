@@ -3,25 +3,22 @@ public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         int N = temperatures.size();
         vector<int> res(N, 0);
-        stack<int> valStack;
-        stack<int> idxStack;
+        stack<pair<int, int>> st; // <val, index>?
         for (int i = 0; i < temperatures.size(); i++){
             int val = temperatures[i];
-            if (valStack.size()){
+            if (st.size()){
                 int currentIndex = i;
-                while (valStack.size() && valStack.top() < val){
-                    int beforeIndex = idxStack.top();
+                while (st.size() && st.top().first < val){
+                    int beforeIndex = st.top().second;
                     res[beforeIndex] = currentIndex - beforeIndex;
-                    valStack.pop();
-                    idxStack.pop();
+                    st.pop();
                 }
             }
-            valStack.push(val);
-            idxStack.push(i);
+            st.push({val, i});
         }
-        while (idxStack.size()){
-            res[idxStack.top()] = 0;
-            idxStack.pop();
+        while (st.size()){
+            res[st.top().second] = 0;
+            st.pop();
         }
         return res;
     }
