@@ -18,22 +18,16 @@ public:
             size++;
             node = node->next;
         }
-
-        ListNode dummy;
-        ListNode* prev = &dummy;
-        prev->next = head;
-        node = head;
-        int cnt = 0;
-        while (cnt < size - n){
-            prev = node;
-            node = node->next;
-            cnt++;
-        }
-        prev->next = node->next;
-        delete node;
         if (size - n == 0)
-            head = prev->next;
-
+            return head->next;
+        node = head;
+        for (int i = 0; i < size; i++){
+            if ((i + 1) == (size - n)){
+                node->next = node->next->next;
+                break;
+            }
+            node = node->next;
+        }
         return head;
     }
 };
