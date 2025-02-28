@@ -11,24 +11,24 @@
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
-        int arr[k];
+        vector<int> v(k);
         ListNode* node = head;
         while (true){
-            if (checkNode(node, k, arr) == false)
+            if (checkNode(node, k, v) == false)
                 break;
             for (int i = k - 1; i >= 0; i--){
-                node->val = arr[i];
+                node->val = v[i];
                 node = node->next;
             }
         }
         return head;
     }
 
-    bool checkNode(ListNode* head, int k, int* arr){
-        for (int cnt = 0; cnt < k; cnt++){
+    bool checkNode(ListNode* head, int k, vector<int>& v){
+        for (int i = 0; i < k; i++){
             if (head == nullptr)
                 return false;
-            arr[cnt] = head->val;
+            v[i] = head->val;
             head = head->next;
         }
         return true;
