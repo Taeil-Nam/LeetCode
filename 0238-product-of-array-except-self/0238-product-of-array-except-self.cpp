@@ -19,9 +19,12 @@ public:
         return res;
     }
 };
+
 /*
-1  1  2  8 prefix
-1  2  4  6 nums
-48 24 6  1 suffix
-48 24 12 8 res
+Input:  [1,2,3,4]
+Output: [24,12,8,6]
+
+prefix: [1, 1, 2,6]
+suffix: [24,12,4,1]
+product:[24,12,8,6]
 */
