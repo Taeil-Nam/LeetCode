@@ -1,20 +1,21 @@
 class Solution {
 public:
     bool isValidSudoku(vector<vector<char>>& board) {
-        unordered_map<int, unordered_set<int>> rm;
-        unordered_map<int, unordered_set<int>> cm;
-        unordered_map<string, unordered_set<int>> sm;
+        unordered_map<int, unordered_set<int>> rowMap, colMap;
+        unordered_map<string, unordered_set<int>> squareMap;
         for (int row = 0; row < 9; row++){
             for (int col = 0; col < 9; col++){
-                if (board[row][col] == '.')
+                string squareKey = "" + to_string(row / 3) + to_string(col / 3);
+                int val = board[row][col];
+                if (val == '.')
                     continue;
-                string smKey = "" + to_string(row / 3) + to_string(col / 3);
-                int num = board[row][col] - '0';
-                if (rm[row].count(num) || cm[col].count(num) || sm[smKey].count(num))
+                if (rowMap[row].count(val) ||
+                    colMap[col].count(val) ||
+                    squareMap[squareKey].count(val))
                     return false;
-                rm[row].insert(num);
-                cm[col].insert(num);
-                sm[smKey].insert(num);
+                rowMap[row].insert(val);
+                colMap[col].insert(val);
+                squareMap[squareKey].insert(val);
             }
         }
         return true;
