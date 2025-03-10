@@ -1,45 +1,32 @@
-class Solution
-{
+class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums)
-    {
-        int fixedNumber = 0;
-        int left = 0;
-        int right = 0;
-        vector<vector<int> > result;
-        set<vector<int> > set;  // for remove duplicate triplets
-
-        sort(nums.begin(), nums.end()); // O(nlogn)
-        for (int i = 0; i < nums.size() - 2; i++) // O(n)
-        {
-            fixedNumber = nums[i];
-            left = i + 1;
-            right = nums.size() - 1;
-
-            while (left < right) // O(n)
-            {
-                if (fixedNumber + nums[left] + nums[right] < 0)
-                {
-                    left++;
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> res;
+        for (int i = 0; i < nums.size(); i++){
+            if (nums[i] > 0)
+                break;
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue;
+            int l = i + 1;
+            int r = nums.size() - 1;
+            while (l < r){
+                int sum = nums[i] + nums[l] + nums[r];
+                if (sum == 0){
+                    res.push_back({nums[i], nums[l], nums[r]});
+                    l++;
+                    r--;
+                    while (l < r && nums[l] == nums[l - 1])
+                        l++;
                 }
-                else if (fixedNumber + nums[left] + nums[right] > 0)
-                {
-                    right--;
+                else if (sum < 0){
+                    l++;
                 }
-                else
-                {
-                    set.insert(vector<int>{fixedNumber, nums[left], nums[right]}); // O(logn)
-                    left++;
+                else if (sum > 0){
+                    r--;
                 }
             }
         }
-        for (auto triplets : set) // O(n)
-        {
-            result.push_back(triplets);
-        }
-        return result;
+        return res;
     }
 };
-
-// Time complexity = O(n^2 * logn)
-// Space complexity = O(n)
