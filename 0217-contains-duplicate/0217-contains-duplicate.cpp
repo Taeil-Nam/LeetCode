@@ -1,10 +1,11 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        unordered_map<int, int> um;
+        unordered_set<int> us;
         for (int n : nums){
-            if (um[n] > 0) return true;
-            um[n]++;
+            if (us.count(n) > 0)
+                return true;
+            us.insert(n);
         }
         return false;
     }
