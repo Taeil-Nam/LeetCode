@@ -2,19 +2,18 @@ class Solution {
 public:
     vector<string> generateParenthesis(int n) {
         vector<string> res;
-        go("", 0, 0, n, res);
+        go(res, n, "(", 1, 0);
         return res;
     }
-    void go(string s, int openCnt, int closeCnt, int n, vector<string>& res){
-        if (openCnt + closeCnt == n * 2){
+
+    void go(vector<string>& res, int n, string s, int openCnt, int closeCnt){
+        if (openCnt > n || closeCnt > n || closeCnt > openCnt)
+            return;
+        if (s.size() == n * 2){
             res.push_back(s);
             return;
         }
-        if (openCnt < n){
-            go(s + "(", openCnt + 1, closeCnt, n, res);
-        }
-        if (closeCnt < openCnt){
-            go(s + ")", openCnt, closeCnt + 1, n, res);
-        }
+        go(res, n, s + "(", openCnt + 1, closeCnt);
+        go(res, n, s + ")", openCnt, closeCnt + 1);
     }
 };
