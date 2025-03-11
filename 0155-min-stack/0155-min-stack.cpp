@@ -5,29 +5,29 @@ public:
     }
     
     void push(int val) {
-        container.push(val);
-        if (minStack.empty())
-            minStack.push(val);
+        mStack.push(val);
+        if (mMinStack.empty())
+            mMinStack.push(val);
         else
-            minStack.push(min(minStack.top(), val));
+            mMinStack.push(min(mMinStack.top(), val));
     }
     
     void pop() {
-        container.pop();
-        minStack.pop();
+        mStack.pop();
+        mMinStack.pop();
     }
     
     int top() {
-        return container.top();
+        return mStack.top();
     }
     
     int getMin() {
-        return minStack.top();
+        return mMinStack.top();
     }
 
 private:
-    stack<int> container;
-    stack<int> minStack;
+    stack<int> mStack;
+    stack<int> mMinStack;
 };
 
 /**
