@@ -27,9 +27,10 @@ public:
         if (list1){
             node->next = list1;
         }
-        else{
+        if (list2){
             node->next = list2;
         }
+        
         return dummy.next;
     }
 };
