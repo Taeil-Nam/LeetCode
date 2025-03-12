@@ -8,40 +8,55 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        bool isCarry = false;
         ListNode dummy;
         ListNode* node = &dummy;
-        int sum = 0;
-        while (l1 != nullptr || l2 != nullptr){
-            if (l1 == nullptr){
-                sum = l2->val;
-                l2 = l2->next;
-            }
-            else if (l2 == nullptr){
-                sum = l1->val;
-                l1 = l1->next;
-            }
-            else{
-                sum = l1->val + l2->val;
-                l1 = l1->next;
-                l2 = l2->next;
-            }
-
-            if (isCarry) sum++;
+        bool carry = false;
+        while (l1 && l2){
+            int sum = l1->val + l2->val;
+            if (carry) sum++;
             if (sum >= 10){
-                isCarry = true;
-                sum = sum % 10;
+                carry = true;
+                sum %= 10;
             }
-            else isCarry = false;
+            else
+                carry = false;
             node->next = new ListNode(sum);
             node = node->next;
+            l1 = l1->next;
+            l2 = l2->next;
         }
-        if (isCarry)
+        while (l1){
+            int sum = l1->val;
+            if (carry) sum++;
+            if (sum >= 10){
+                carry = true;
+                sum %= 10;
+            }
+            else
+                carry = false;
+            node->next = new ListNode(sum);
+            node = node->next;
+            l1 = l1->next;
+        }
+        while (l2){
+            int sum = l2->val;
+            if (carry) sum++;
+            if (sum >= 10){
+                carry = true;
+                sum %= 10;
+            }
+            else
+                carry = false;
+            node->next = new ListNode(sum);
+            node = node->next;
+            l2 = l2->next;
+        }
+        if (carry){
             node->next = new ListNode(1);
+        }
         return dummy.next;
     }
 };
