@@ -15,31 +15,21 @@ public:
         ListNode* node = &dummy;
         while (list1 && list2){
             if (list1->val <= list2->val){
-                ListNode* newNode = new ListNode(list1->val);
-                node->next = newNode;
+                node->next = list1;
                 list1 = list1->next;
             }
             else{
-                ListNode* newNode = new ListNode(list2->val);
-                node->next = newNode;
+                node->next = list2;
                 list2 = list2->next;
             }
             node = node->next;
         }
-        while (list1){
-            ListNode* newNode = new ListNode(list1->val);
-            node->next = newNode;
-            node = node->next;
-            list1 = list1->next;
+        if (list1){
+            node->next = list1;
         }
-        while (list2){
-            ListNode* newNode = new ListNode(list2->val);
-            node->next = newNode;
-            node = node->next;
-            list2 = list2->next;
+        else{
+            node->next = list2;
         }
-        node->next = nullptr;
-        
         return dummy.next;
     }
 };
