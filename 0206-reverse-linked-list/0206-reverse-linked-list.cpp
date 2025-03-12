@@ -10,16 +10,29 @@
  */
 class Solution {
 public:
+    /* Iteration */
     ListNode* reverseList(ListNode* head) {
-        return go(nullptr, head);
+        ListNode* prev = nullptr;
+        while (head){
+            ListNode* temp = head->next;
+            head->next = prev;
+            prev = head;
+            head = temp;
+        }
+        return prev;
     }
 
-    ListNode* go(ListNode* prev, ListNode* node){
-        if (node == nullptr){
-            return prev;
-        }
-        ListNode* head = go(node, node->next);
-        node->next = prev;
-        return head;
-    }
+    /* Recursion */
+    // ListNode* reverseList(ListNode* head) {
+    //     return go(nullptr, head);
+    // }
+
+    // ListNode* go(ListNode* prev, ListNode* node){
+    //     if (node == nullptr){
+    //         return prev;
+    //     }
+    //     ListNode* head = go(node, node->next);
+    //     node->next = prev;
+    //     return head;
+    // }
 };
