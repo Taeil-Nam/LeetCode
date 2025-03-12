@@ -11,26 +11,34 @@
 class Solution {
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
-        vector<int> v(k);
-        ListNode* node = head;
+        ListNode dummy;
+        dummy.next = head;
+        ListNode* groupPrev = &dummy;
         while (true){
-            if (checkNode(node, k, v) == false)
+            ListNode* kth = getKth(groupPrev, k);
+            if (!kth)
                 break;
-            for (int i = k - 1; i >= 0; i--){
-                node->val = v[i];
-                node = node->next;
+            ListNode* groupNext = kth->next;
+            ListNode* prev = kth->next;
+            ListNode* node = groupPrev->next;
+            while (node != groupNext){
+                ListNode* next = node->next;
+                node->next = prev;
+                prev = node;
+                node = next;
             }
+            ListNode* temp = groupPrev->next;
+            groupPrev->next = kth;
+            groupPrev = temp;
         }
-        return head;
+        return dummy.next;
     }
 
-    bool checkNode(ListNode* head, int k, vector<int>& v){
-        for (int i = 0; i < k; i++){
-            if (head == nullptr)
-                return false;
-            v[i] = head->val;
-            head = head->next;
+    ListNode* getKth(ListNode* node, int k){
+        while (node && k){
+            node = node->next;
+            k--;
         }
-        return true;
+        return node;
     }
 };
