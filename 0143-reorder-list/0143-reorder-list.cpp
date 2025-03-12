@@ -8,25 +8,24 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        unordered_map<int, ListNode*> addrMap;
-        int right = 0;
+        vector<ListNode*> v;
         while (head){
-            addrMap[right] = head;
+            v.push_back(head);
             head = head->next;
-            right++;
         }
-        right--;
-        int left = 0;
-        while (left < right){
-            addrMap[left]->next = addrMap[right];
-            left++;
-            addrMap[right]->next = addrMap[left];
-            right--;
+        int l = 0;
+        int r = v.size() - 1;
+        while (l < r){
+            v[l]->next = v[r];
+            l++;
+            if (l == r)
+                break;
+            v[r]->next = v[l];
+            r--;
         }
-        addrMap[left]->next = nullptr;
+        v[r]->next = nullptr;
     }
 };
