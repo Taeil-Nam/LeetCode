@@ -5,19 +5,19 @@ public:
         int r = height.size() - 1;
         int maxL = height[l];
         int maxR = height[r];
-        int res = 0;
+        int water = 0;
         while (l < r){
-            if (maxL <= maxR){
+            if (height[l] <= height[r]){
                 l++;
                 maxL = max(maxL, height[l]);
-                res += maxL - height[l];
+                water += maxL - height[l];
             }
             else{
                 r--;
                 maxR = max(maxR, height[r]);
-                res += maxR - height[r];
+                water += maxR - height[r];
             }
         }
-        return res;
+        return water;
     }
 };
