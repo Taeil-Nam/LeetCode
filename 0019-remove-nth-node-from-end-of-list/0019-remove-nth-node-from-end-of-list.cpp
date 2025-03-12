@@ -8,11 +8,11 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
-
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
         int size = 0;
+        int cnt = 0;
         ListNode* node = head;
         while (node){
             size++;
@@ -20,9 +20,11 @@ public:
         }
         if (size - n == 0)
             return head->next;
+
         node = head;
-        for (int i = 0; i < size; i++){
-            if ((i + 1) == (size - n)){
+        while (node){
+            cnt++;
+            if (size - cnt == n){
                 node->next = node->next->next;
                 break;
             }
