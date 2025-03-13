@@ -18,10 +18,9 @@ public:
             ListNode* kth = getKth(groupPrev, k);
             if (!kth)
                 break;
-            ListNode* groupNext = kth->next;
             ListNode* prev = kth->next;
             ListNode* node = groupPrev->next;
-            while (node != groupNext){
+            while (node != kth->next){
                 ListNode* next = node->next;
                 node->next = prev;
                 prev = node;
