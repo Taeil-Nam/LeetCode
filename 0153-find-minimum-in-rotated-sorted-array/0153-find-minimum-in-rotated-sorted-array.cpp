@@ -7,13 +7,12 @@ public:
         while (l <= r){
             res = min(res, nums[l]);
             int m = (l + r) / 2;
-            res = min(res, nums[m]);
             if (nums[l] <= nums[m]){
                 l = m + 1;
             }
-            else{
+            else
                 r = m - 1;
-            }
+            res = min(res, nums[m]);
         }
         return res;
     }
