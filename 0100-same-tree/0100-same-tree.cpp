@@ -16,10 +16,8 @@ public:
             return true;
         if (!p || !q)
             return false;
-        
-        bool isSame = false;
-        if (p->val == q->val)
-            isSame = true;
-        return isSame && isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+        if (p->val != q->val)
+            return false;
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
     }
 };
