@@ -16,15 +16,20 @@ public:
     }
 
     bool helper(TreeNode* root, TreeNode* subRoot){
-        if (!root) return false;
-        if (isSameTree(root, subRoot)) return true;
+        if (!root)
+            return false;
+        if (check(root, subRoot))
+            return true;
         return helper(root->left, subRoot) || helper(root->right, subRoot);
     }
 
-    bool isSameTree(TreeNode* root, TreeNode* subRoot){
-        if (!root && !subRoot) return true;
-        if (!root || !subRoot) return false;
-        if (root->val != subRoot->val) return false;
-        return isSameTree(root->left, subRoot->left) && isSameTree(root->right, subRoot->right);
+    bool check(TreeNode* root, TreeNode* subRoot){
+        if (!root && !subRoot)
+            return true;
+        if (!root || !subRoot)
+            return false;
+        if (root->val != subRoot->val)
+            return false;
+        return check(root->left, subRoot->left) && check(root->right, subRoot->right);
     }
 };
