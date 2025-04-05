@@ -19,15 +19,12 @@ public:
         q.push(root);
         while (q.size()){
             int levelSize = q.size();
-            bool isAdded = false;
             for (int i = 0; i < levelSize; i++){
                 TreeNode* node = q.front();
                 q.pop();
+                if (i == 0) res.push_back(node->val);
                 if (node->right) q.push(node->right);
                 if (node->left) q.push(node->left);
-                if (isAdded) continue;
-                res.push_back(node->val);
-                isAdded = true;
             }
         }
         return res;
