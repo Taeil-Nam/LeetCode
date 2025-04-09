@@ -10,22 +10,18 @@
  * };
  */
 class Solution {
-private:
-    priority_queue<int, vector<int>, greater<int>> pq;
 public:
     int kthSmallest(TreeNode* root, int k) {
-        dfs(root);
-        for (int i = 1; i < k; i++) {
-            pq.pop();
-        }
-        return pq.top();
+        vector<int> v;
+        inorderTraversal(root, v);
+        return v[k - 1];
     }
 
-    void dfs(TreeNode* node) {
+    void inorderTraversal(TreeNode* node, vector<int>& v) {
         if (!node)
             return;
-        pq.push(node->val);
-        dfs(node->left);
-        dfs(node->right);
+        inorderTraversal(node->left, v);
+        v.push_back(node->val);
+        inorderTraversal(node->right, v);
     }
 };
