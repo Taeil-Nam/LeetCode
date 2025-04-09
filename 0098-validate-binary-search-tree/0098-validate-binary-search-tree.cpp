@@ -18,7 +18,7 @@ public:
     bool dfs(TreeNode* node, long minimum, long maximum) {
         if (!node)
             return true;
-        if (node->val <= minimum || node->val >= maximum)
+        if (node->val >= maximum || node->val <= minimum)
             return false;
         return dfs(node->left, minimum, node->val) && dfs(node->right, node->val, maximum);
     }
