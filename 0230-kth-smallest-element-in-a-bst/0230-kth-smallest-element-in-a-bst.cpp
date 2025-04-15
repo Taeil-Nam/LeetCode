@@ -10,18 +10,19 @@
  * };
  */
 class Solution {
+    vector<int> v;
+
 public:
     int kthSmallest(TreeNode* root, int k) {
-        vector<int> v;
-        inorderTraversal(root, v);
+        dfs(root);
         return v[k - 1];
     }
 
-    void inorderTraversal(TreeNode* node, vector<int>& v) {
+    void dfs(TreeNode* node) {
         if (!node)
             return;
-        inorderTraversal(node->left, v);
+        dfs(node->left);
         v.push_back(node->val);
-        inorderTraversal(node->right, v);
+        dfs(node->right);
     }
 };
