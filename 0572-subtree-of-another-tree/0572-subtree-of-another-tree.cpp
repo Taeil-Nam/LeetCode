@@ -12,24 +12,20 @@
 class Solution {
 public:
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        return helper(root, subRoot);
-    }
-
-    bool helper(TreeNode* root, TreeNode* subRoot){
         if (!root)
             return false;
-        if (check(root, subRoot))
+        if (isSameTree(root, subRoot))
             return true;
-        return helper(root->left, subRoot) || helper(root->right, subRoot);
+        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
     }
 
-    bool check(TreeNode* root, TreeNode* subRoot){
+    bool isSameTree(TreeNode* root, TreeNode* subRoot){
         if (!root && !subRoot)
             return true;
         if (!root || !subRoot)
             return false;
         if (root->val != subRoot->val)
             return false;
-        return check(root->left, subRoot->left) && check(root->right, subRoot->right);
+        return isSameTree(root->left, subRoot->left) && isSameTree(root->right, subRoot->right);
     }
 };
