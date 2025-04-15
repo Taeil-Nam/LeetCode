@@ -12,24 +12,22 @@
 class Solution {
 public:
     bool isBalanced(TreeNode* root) {
-        if (!root)
-            return true;
-        return helper(root);
+        return checkBalanced(root);
     }
 
-    bool helper(TreeNode* node){
+    bool checkBalanced(TreeNode* node) {
         if (!node)
             return true;
-        int leftDepth = getDepth(node->left);
-        int rightDepth = getDepth(node->right);
+        int leftDepth = maxDepth(node->left);
+        int rightDepth = maxDepth(node->right);
         if (abs(leftDepth - rightDepth) > 1)
             return false;
-        return helper(node->left) && helper(node->right);
+        return checkBalanced(node->left) && checkBalanced(node->right);
     }
 
-    int getDepth(TreeNode* node){
+    int maxDepth(TreeNode* node) {
         if (!node)
             return 0;
-        return 1 + max(getDepth(node->left), getDepth(node->right));
+        return 1 + max(maxDepth(node->left), maxDepth(node->right));
     }
 };
