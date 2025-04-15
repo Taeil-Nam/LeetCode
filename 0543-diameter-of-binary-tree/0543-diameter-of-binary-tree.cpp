@@ -11,20 +11,18 @@
  */
 class Solution {
     int res = 0;
-
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        getDepth(root);
+        maxDepth(root);
         return res;
     }
 
-    int getDepth(TreeNode* node){
+    int maxDepth(TreeNode* node) {
         if (!node)
             return 0;
-        int leftDepth = getDepth(node->left);
-        int rightDepth = getDepth(node->right);
-        int diameter = leftDepth + rightDepth;
-        res = max(res, diameter);
+        int leftDepth = maxDepth(node->left);
+        int rightDepth = maxDepth(node->right);
+        res = max(res, leftDepth + rightDepth);
         return 1 + max(leftDepth, rightDepth);
     }
 };
