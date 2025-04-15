@@ -24,18 +24,11 @@ public:
     TreeNode* dfs(vector<int>& preorder, int l, int r) {
         if (l > r)
             return nullptr;
-        
         int nodeVal = preorder[preIdx++];
         TreeNode* node = new TreeNode(nodeVal);
-
         int mid = indices[nodeVal];
         node->left = dfs(preorder, l, mid - 1);
         node->right = dfs(preorder, mid + 1, r);
         return node;
     }
 };
-
-/*
-preorder = 각 서브트리의 root 노드를 알 수 있음.
-inorder = 각 root 노드의 왼쪽, 오른쪽 자식 노드를 알 수 있음.
-*/
