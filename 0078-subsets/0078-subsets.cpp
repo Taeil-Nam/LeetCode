@@ -1,22 +1,22 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> res;
         vector<int> subset;
+        vector<vector<int>> res;
 
-        go(nums, 0, res, subset);
+        go(nums, subset, res, 0);
         return res;
     }
 
-    void go(vector<int>& nums, int index, vector<vector<int>>& res, vector<int>& subset){
-        if (index == nums.size()){
+    void go(vector<int>& nums, vector<int>& subset, vector<vector<int>>& res, int idx){
+        if (idx == nums.size()){
             res.push_back(subset);
             return;
         }
-        subset.push_back(nums[index]);
-        go(nums, index + 1, res, subset);
+        subset.push_back(nums[idx]);
+        go(nums, subset, res, idx + 1);
 
         subset.pop_back();
-        go(nums, index + 1, res, subset);
+        go(nums, subset, res, idx + 1);
     }
 };
