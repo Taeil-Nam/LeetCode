@@ -5,16 +5,16 @@ public:
         priority_queue<pair<int, int>> pq;
         vector<int> res;
 
-        for (int n : nums){
-            freq[n]++;
+        for (int num : nums) {
+            freq[num]++;
         }
-        for (auto& pair : freq){
-            pq.push({pair.second, pair.first});
+        for (auto& it : freq) {
+            pq.push({it.second, it.first});
         }
-        while (k){
-            res.push_back(pq.top().second);
-            pq.pop();
-            k--;
+        while (k) {
+           res.push_back(pq.top().second);
+           pq.pop();
+           k--;
         }
         return res;
     }
