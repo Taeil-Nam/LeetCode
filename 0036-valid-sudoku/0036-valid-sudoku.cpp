@@ -3,19 +3,21 @@ public:
     bool isValidSudoku(vector<vector<char>>& board) {
         vector<unordered_set<char>> rows(9);
         vector<unordered_set<char>> cols(9);
-        vector<vector<unordered_set<char>>> boxes(3, vector<unordered_set<char>>(3));
+        vector<unordered_set<char>> boxes(9);
 
-        for (int row = 0; row < 9; row++){
-            for (int col = 0; col < 9; col++){
-                char val = board[row][col];
-                if (val == '.') continue;
-                if (rows[row].count(val) ||
-                    cols[col].count(val) ||
-                    boxes[row / 3][col / 3].count(val))
+        for (int r = 0; r < 9; r++){
+            for (int c = 0; c < 9; c++){
+                char val = board[r][c];
+                if (val == '.')
+                    continue;
+
+                int boxIdx = (r / 3) * 3 + (c / 3);
+                if (rows[r].count(val) || cols[c].count(val) || boxes[boxIdx].count(val))
                     return false;
-                rows[row].insert(val);
-                cols[col].insert(val);
-                boxes[row / 3][col / 3].insert(val);
+                
+                rows[r].insert(val);
+                cols[c].insert(val);
+                boxes[boxIdx].insert(val);
             }
         }
         return true;
