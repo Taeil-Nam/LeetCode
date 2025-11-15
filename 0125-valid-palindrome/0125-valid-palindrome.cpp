@@ -3,17 +3,17 @@ public:
     bool isPalindrome(string s) {
         int l = 0;
         int r = s.size() - 1;
-        while (l < r){
-            if (!isalnum(s[l])){
+
+        while (l < r) {
+            if (isalnum(s[l]) == false) {
                 l++;
                 continue;
             }
-            else if (!isalnum(s[r])){
+            if (isalnum(s[r]) == false) {
                 r--;
                 continue;
             }
-            if (tolower(s[l]) != tolower(s[r]))
-                return false;
+            if (tolower(s[l]) != tolower(s[r])) return false;
             l++;
             r--;
         }
