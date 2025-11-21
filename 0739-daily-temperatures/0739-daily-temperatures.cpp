@@ -6,9 +6,8 @@ public:
         vector<int> res(N, 0);
 
         for (int i = 0; i < N; i++) {
-            while (!st.empty() && temperatures[st.top()] < temperatures[i]) {
-                int start = st.top();
-                res[start] = i - start;
+            while (!st.empty() && temperatures[i] > temperatures[st.top()]) {
+                res[st.top()] = i - st.top();
                 st.pop();
             }
             st.push(i);
