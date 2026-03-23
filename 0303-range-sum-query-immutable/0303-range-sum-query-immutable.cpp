@@ -1,23 +1,29 @@
 class NumArray {
 public:
     NumArray(vector<int>& nums) {
-        for (int i = 0; i < nums.size(); i++){
+        N = nums.size();
+        psum = vector<int>(N, 0);
+
+        for (int i = 0; i < N; i++){
             if (i == 0){
-                psum.push_back(nums[i]);
+                psum[i] = nums[i];
                 continue;
             }
-            psum.push_back(psum[i - 1] + nums[i]);
+            psum[i] = psum[i - 1] + nums[i];
         }
     }
     
     int sumRange(int left, int right) {
-        if (left == 0)
+        if (left == 0) {
             return psum[right];
-        else
+        }
+        else {
             return psum[right] - psum[left - 1];
+        }
     }
 
 private:
+    int N;
     vector<int> psum;
 };
 
