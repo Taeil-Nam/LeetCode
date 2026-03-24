@@ -2,24 +2,15 @@ class NumArray {
 public:
     NumArray(vector<int>& nums) {
         N = nums.size();
-        psum = vector<int>(N, 0);
+        psum = vector<int>(N + 1, 0);
 
-        for (int i = 0; i < N; i++){
-            if (i == 0){
-                psum[i] = nums[i];
-                continue;
-            }
-            psum[i] = psum[i - 1] + nums[i];
+        for (int i = 1; i <= N; i++){
+            psum[i] = psum[i - 1] + nums[i - 1];
         }
     }
-    
+
     int sumRange(int left, int right) {
-        if (left == 0) {
-            return psum[right];
-        }
-        else {
-            return psum[right] - psum[left - 1];
-        }
+        return psum[right + 1] - psum[left];
     }
 
 private:
