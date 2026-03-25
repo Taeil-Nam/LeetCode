@@ -20,12 +20,3 @@ public:
         return res;
     }
 };
-
-/*
-nums = {1, -1, 1, 0}
-psum = {0, 1, 0, 1, 1}
-k = 1
-
-psum[i] + psum[j] = k
-psum[i] = k - psum[j]
-*/
