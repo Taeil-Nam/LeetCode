@@ -4,19 +4,28 @@ public:
         int N = nums.size();
         vector<int> psum(N + 1, 0);
         unordered_map<int, int> seen;
-        int ret = 0;
-        
+        int res = 0;
+
         psum[0] = 0;
         for (int i = 1; i <= N; i++){
             psum[i] = psum[i - 1] + nums[i - 1];
         }
 
         for (int i = 1; i <= N; i++){
-            if (psum[i] == k) ret++;
-            if (seen[psum[i] - k]) ret += seen[psum[i] - k];
+            if (psum[i] == k) res++;
+            if (seen[psum[i] - k]) res += seen[psum[i] - k];
             seen[psum[i]]++;
         }
 
-        return ret;
+        return res;
     }
 };
+
+/*
+nums = {1, -1, 1, 0}
+psum = {0, 1, 0, 1, 1}
+k = 1
+
+psum[i] + psum[j] = k
+psum[i] = k - psum[j]
+*/
